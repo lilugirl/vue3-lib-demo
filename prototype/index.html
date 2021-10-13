@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://unpkg.com/vue@next"></script>
+    <!-- <script src="https://unpkg.com/vue@next"></script> -->
+    <script src="/node_modules/vue/dist/vue.global.js"></script>
     <script src="dist/index.js"></script>
 </head>
 <body>
@@ -13,7 +14,9 @@
     <script>
         const {createApp,reactive,computed,watchEffect}=Vue;
         const MyComponent={
-            template:'<my-button />'
+            template:`<my-button />
+                      <sfc-button />
+            `
         }
         createApp(MyComponent).use(Element).mount('#app')
     </script>

@@ -1,4 +1,4 @@
-var Element = (function () {
+var Element = (function (vue) {
     'use strict';
 
     var MyButton = {
@@ -11,16 +11,31 @@ var Element = (function () {
       template: '<button v-on:click="count++">click me {{count}}</button>'
     };
 
-    MyButton.install = app => app.component('MyButton', MyButton); // 组件库
+    var script = {
+        name: "SfcButton",
+      };
+
+    function render(_ctx, _cache, $props, $setup, $data, $options) {
+      return (vue.openBlock(), vue.createElementBlock("button", null, "sfc 666"))
+    }
+
+    script.render = render;
+    script.__file = "src/SfcButton.vue";
+
+    MyButton.install = app => app.component('MyButton', MyButton);
+
+    script.install = app => app.component('SfcButton', script); // 组件库
 
 
     const Element = {
       MyButton,
+      SfcButton: script,
       install: app => {
         app.use(MyButton);
+        app.use(script);
       }
     };
 
     return Element;
 
-}());
+}(Vue));
